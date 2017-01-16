@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Free Vloader Web Template | Home :: w3layouts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/results_assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+<div class="clear"></div>
+<div class="wrap">
+    <div class="vdo-log margin_bottom">
+        <div class="video-player"><!-- autoplay can be removed if wanted -->
+            <video width="1020" height="768" controls autoplay>
+            <source src="{{video_path}}#t={{shot_timestamp}}" type="video/mp4">
+            Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="vdo-log">
+        <div class="heading"><h2>Other <span>Relevant Scenes</span></h2></div>
+        <div class="vdo-list">
+            <div class="vdo-thumb">
+                <a href="{{link_to[0]}}" style="background-image:url(/Users/arun/Movies/BetterCallSaul/thumbnails/{{ep_name}}/thumb{{ts_ind[0]}}.png);"></a>
+            </div>
+            <div class="vdo-info">
+                <div class="vdo-title"><a href="{{link_to[0]}}"><h3>{{sub_fin[0]}}</h3></a></div>
+                <!-- <div class="vdo-desc">This got some cool moves. See for yourself how he fights for his girl.This got some cool moves. See for yourself how he fights for his girl.This got some cool moves. See for yourself how he fights for his girl.</div> -->
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="vdo-list">
+            <div class="vdo-thumb">
+                <a href="{{link_to[1]}}" style="background-image:url(/Users/arun/Movies/BetterCallSaul/thumbnails/{{ep_name}}/thumb{{ts_ind[1]}}.png);"></a>
+            </div>
+            <div class="vdo-info">
+                <div class="vdo-title"><a href="{{link_to[1]}}"><h3>{{sub_fin[1]}}</h3></a></div>
+                <!-- <div class="vdo-desc"></div> -->
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="page-nav">
+            <ul>
+                <li><a href="/search/{{show_name}}/{{ep_num}}" >Go Back to Search</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>

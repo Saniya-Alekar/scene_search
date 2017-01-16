@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Flixnet</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="/episode_list_assets/css/main.css"/>
+  </head>
+
+  <body>
+    <div id="wrapper">
+	  <header id="header">
+	    <h1><a href="index">FLIXNET</a></h1>
+		<nav class="links">
+	      <ul>
+		    <li><a href="/show_select">Shows</a></li>
+		  </ul>
+		</nav>
+	  </header>
+
+      <div id="main">
+        %for index, description in enumerate(video_description['episode_descr']):
+		    <article class="post">
+			  <div class="title">
+				<h2 style="text-align: center"><a href="/view_episode/{{show_name}}/{{index}}">{{video_description['episode_names'][index]}}</a></h2>
+			  </div>
+			  <a href="/view_episode/{{show_name}}/{{index}}" class="image featured"><img src="/episode_list_assets/images/{{show_name}}/pic{{index+1}}.png" alt=""></a>
+			  <p>{{description}}</p>
+			  <footer>
+				<ul class="actions">
+				  <center><li><a href="/view_episode/{{show_name}}/{{index}}" class="button big">Watch Episode</a><a href="/search/{{show_name}}/{{index}}" class="button big">Search Episode</a></li>
+				</ul>
+			  </footer>
+			</article>
+        %end
+	  </div>
+
+	  <section id="sidebar">
+		<section id="intro">
+		  <header>
+		    <h2>{{video_description['alt_name']}}</h2>
+		  </header>
+		</section>
+	  </section>
+	</div>
+
+	<!-- Scripts -->
+	<script src="/episode_list_assets/js/jquery.min.js"></script>
+	<script src="/episode_list_assets/js/skel.min.js"></script>
+	<script src="/episode_list_assets/js/util.js"></script>
+	<script src="/episode_list_assets/js/main.js"></script>
+  </body>
+</html>

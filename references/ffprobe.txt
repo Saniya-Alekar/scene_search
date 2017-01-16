@@ -1,0 +1,50 @@
+#ffmpeg -i test.mp4 -vf select='gt(scene\,0.4)' vsync vfr thumb%04d.png
+
+ffprobe -show_frames -of compact=p=0 -f lavfi "movie=test.mp4, select=gt(scene\,0.4)" > output.txt
+
+
+FFmpeg is the leading multimedia framework, able to decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created. It supports the most obscure ancient formats up to the cutting edge. No matter if they were designed by some standards committee, the community or a corporation. It is also highly portable: FFmpeg compiles, runs, and passes our testing infrastructure FATE across Linux, Mac OS X, Microsoft Windows, the BSDs, Solaris, etc. under a wide variety of build environments, machine architectures, and configurations. 
+
+FFmpeg contains ffmpeg, ffserver, ffplay and ffprobe which can be used by end users for transcoding, streaming and playing.
+
+ffprobe is a tool of FFmpeg, a multimedia analyzer. 
+
+Can use it to output all kinds of information about an input including duration, frame rate, frame size, etc. It is also useful for gathering specific information about an input to be used in a script. 
+
+ffprobe gathers information from multimedia streams and prints it in human- and machine-readable fashion. 
+
+If a filename is specified in input, ffprobe will try to open and probe the file content. If the file cannot be opened or recognized as a multimedia file, a positive exit code is returned
+
+-of is output format. Can use -print_format, compact is a format of printing the output. Also csv,flat,json,xml. Compact is similar to csv.
+To print the section name p=0, default is p=1
+
+
+-show_frames gives info about each frame. The info about each frame is printed within a dedicated section FRAME
+
+-i is read input file
+
+select is to select frames to pass to output.
+select=0 is skip all, select=1 is select all frames.
+\, gives next parameter generally
+Select one frame every 100:
+
+select='not(mod(n\,100))'
+
+Select only frames contained in the 10-20 time interval:
+
+select=between(t\,10\,20)
+
+
+scene (video only)
+value between 0 and 1 to indicate a new scene; a low value reflects a low probability for the current frame to introduce a new scene, while a higher value means the current frame is more likely to be one
+
+The method used is called Sum of absolute differences.
+
+
+lavfi is lib av filter device.
+It reads from libavfilter filtergraph.
+
+
+ffmpeg -i input.flv -ss 00:00:14.435 -vframes 1 out.png
+
+

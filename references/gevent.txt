@@ -1,0 +1,13 @@
+Working of Gevent:
+Most servers limit the size of their worker pools to a relatively low number of concurrent threads, due to the high overhead involved in switching between and creating new threads. While threads are cheap compared to processes (forks), they are still expensive to create for each new connection.
+
+The gevent module adds greenlets to the mix. Greenlets behave similar to traditional threads, but are very cheap to create. A gevent-based server can spawn thousands of greenlets (one for each connection) with almost no overhead. Blocking individual greenlets has no impact on the servers ability to accept new requests. The number of concurrent connections is virtually unlimited.
+
+This makes creating asynchronous applications incredibly easy, because they look and feel like synchronous applications. A gevent-based server is actually not asynchronous, but massively multi-threaded.
+
+Monkey Patching:
+Python's runtime allows for most objects to be modified at runtime including modules, classes, and even functions. This is generally an astoudingly bad idea since it creates an "implicit side-effect" that is most often extremely difficult to debug if problems occur, nevertheless in extreme situations where a library needs to alter the fundamental behavior of Python itself monkey patches can be used. In this case gevent is capable of patching most of the blocking system calls in the standard library including those in socket, ssl, threading and select modules to instead behave cooperatively.
+
+For example, the Redis python bindings normally uses regular tcp sockets to communicate with the redis-server instance. Simply by invoking gevent.monkey.patch_all() we can make the redis bindings schedule requests cooperatively and work with the rest of our gevent stack.
+
+This lets us integrate libraries that would not normally work with gevent without ever writing a single line of code. While monkey-patching is still evil, in this case it is a "useful evil".
